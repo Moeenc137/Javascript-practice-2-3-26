@@ -69,3 +69,44 @@ add(1, 4, 534);
 restaurant.orderPizza("mushroms", "chicken", "sauce");
 //rest is used where variable names are divided by comas and spread is used where variable values are
 //divided by comas.
+
+//short circuiting
+//Javascript operators tend to short circuit under certain conditions like AND operator when there
+//are two or more values which are either truthy or falsy , AND operator will return the first truthy
+//value.
+
+//OR operator can pass any data type.
+// OR operator:
+console.log(0 || 10);
+//outcome: 10. Because between 0 and 10 , 10 is a truthy value so it skipped the 0 and returned 10.
+console.log(10 || "J");
+//outcome: 10. This is another example of OR short circuiting, it is 10 because OR operator sees
+//the first truthy value and just returns that , it dont even look at the second one.
+console.log(0 || "" || undefined || null);
+//outcome: null. in case where all values are falsy, it will simply return the last value.
+
+//A practical example
+const guests1 = restaurant.numGuests ? restaurant.numGuests : 12;
+console.log(guests1);
+//outcome will be 10 because as numGuests dont exist and it is undefined so using ternry operator
+//i set a default value of 10.
+
+//More better way of doing this using short circuiting:
+const guests2 = restaurant.numGuests || 10;
+console.log(guests2);
+//outcome: 10 because numguests is undefined , which is a falsy value.
+
+//AND operator
+//The AND operator short circuits in a complete opposite way, it returs the first element which is
+//flasy, and if all are truthy it will return the last value.
+console.log(90 && 0 && 98);
+// 0
+console.log(9 && "M" && 98);
+//98
+
+//practical example:
+if (restaurant.orderPizza) {
+  restaurant.orderPizza("chicken", "sauce", "mayo");
+}
+//efficient way using short circuiting:
+restaurant.orderPizza && restaurant.orderPizza("chicken", "sauce", "mayo");
